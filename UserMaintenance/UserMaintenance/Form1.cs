@@ -23,6 +23,7 @@ namespace UserMaintenance
             
             btnAdd.Text = Resource1.Add; // button1
             btnFile.Text = Resource1.Save;
+            btnDelete.Text = Resource1.Delete;
 
             listUsers.DataSource = users;
             listUsers.ValueMember = "ID";
@@ -51,8 +52,21 @@ namespace UserMaintenance
                 {
                     writer.WriteLine(item.ID);
                     writer.WriteLine(item.FullName);
+                    
                 }
                 writer.Close();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (listUsers.SelectedItem!=null)
+            {
+                users.RemoveAt(listUsers.SelectedIndex);
+            }
+            else
+            {
+                MessageBox.Show("Nincs kijelölve user!", "hiba", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
     }
